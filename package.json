@@ -1,0 +1,25 @@
+{
+  "name": "calculator_challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-redux": "^7.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samueldmaus/calculator_challenge_python_react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samueldmaus/calculator_challenge_python_react/issues"
+  },
+  "homepage": "https://github.com/samueldmaus/calculator_challenge_python_react#readme"
+}
