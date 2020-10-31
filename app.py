@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 from flask_cors import CORS
 
-app = Flask(__name__, template_folder='./public')
+app = Flask(__name__)
 
 CORS(app)
 
@@ -45,7 +45,7 @@ def switchEquation(x, num1, num2):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return jsonify({"response":"I am working"})
 
 @app.route('/api/equations', methods=['GET', 'POST'])
 def equations():
