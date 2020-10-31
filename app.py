@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 CORS(app)
-ENV='prod'
+ENV='dev'
 
 if ENV == 'prod':
     app.debug = True
@@ -53,7 +53,7 @@ def equations():
     if request.method == 'POST':
         equation = request.json.get("equation")
         for i in range(len(equation)):
-            if(equation[i] == '+') or (equation[i] == '-') or (equation[i] == 'x') or (equation[i] == '÷'):
+            if(equation[i] == '+') or (equation[i] == '-') or (equation[i] == 'x') or (equation[i] == '÷') and (i != 0):
                 num1 = int(equation[0:i])
                 num2 = int(equation[i+1:])
                 answer = switchEquation(equation[i], num1, num2)
