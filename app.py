@@ -43,7 +43,7 @@ def switchEquation(x, num1, num2):
     }
     return switcher.get(x)
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
     return jsonify({"response":"I am working"})
 
