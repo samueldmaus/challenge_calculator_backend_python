@@ -13,7 +13,7 @@ if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://sammaus@localhost/calculator'
 else:
-    app.debug = False
+    app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ybxhrslmerxfkj:7faf0ac7040ca21932381ce8492ce54532a5e4cd7b2b028bf5a72dd616591620@ec2-54-224-175-142.compute-1.amazonaws.com:5432/d2im1081uskat1'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
