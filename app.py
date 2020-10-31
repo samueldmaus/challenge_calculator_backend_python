@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-import psycopg2
-import psycopg2.extras
 
 app = Flask(__name__, template_folder='./public')
 
@@ -26,6 +24,10 @@ class Calculator(db.Model):
     def __init__(self, equation, answer):
         self.equation = equation
         self.answer = answer
+    def serialize(self):
+        return {"id": self.id,
+                "equation": self.equation,
+                "answer": self.answer}
 
 # switch function to determine what operation to run
 def switchEquation(x, num1, num2):
@@ -45,25 +47,29 @@ def index():
 def equations():
     # POST route to add equation to db
     if request.method == 'POST':
-        equation = request.json.get("equation")
+        equation = request.form.get("equation")
         for i in range(len(equation)):
             if(equation[i] == '+') or (equation[i] == '-') or (equation[i] == 'x') or (equation[i] == '÷'):
                 num1 = int(equation[0:i])
                 num2 = int(equation[i+1:])
                 answer = switchEquation(equation[i], num1, num2)
                 print(num1, num2, answer)
-        cur = conn.cursor()
-        cur.execute("""INSERT INTO challenge_calculator (equation, answer)
-        VALUES (%s, %s);""", [equation, answer])
-        conn.commit()
+        data = Calculator(equation, answer)
+        db.session.add(data)
+        db.session.commit()
         return "success", 201
     # GET route to get equations from db
     elif request.method == 'GET':
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM challenge_calculator ORDER BY id DESC LIMIT 10")
-        response = cur.fetchall()
-        return jsonify(response)
-
+        response = Calculator.query.all()
+        output = []
+        for item in response:
+            currItem = {}
+            currItem['id'] = item.id
+            currItem['equation'] = item.equation
+            currItem['answer'] = item.answer
+            output.append(currItem)
+        return jsonify(output)
+        
 
 if __name__ == '__main__':
     app.run()
