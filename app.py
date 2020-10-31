@@ -4,7 +4,7 @@ from sqlalchemy import desc
 from flask_cors import CORS
 
 app = Flask(__name__)
-
+server = app.server
 CORS(app)
 
 ENV = 'prod'
@@ -76,5 +76,5 @@ def equations():
         
 
 if __name__ == '__main__':
-    app.run()
+    app.run_server()
 
