@@ -4,8 +4,8 @@
 This is the server-side/back-end repository for the Challenge Calculator (see the client-side/front-end repo here: https://github.com/samueldmaus/challenge_calculator_frontend_react). The database is created with SQLAlchemy by using a db model. Database is PostgreSQL.
 
 ## Prerequisites
-1. [Python](python.org)
-2. [PostgreSQL](postgresql.org)
+1. [Python](https://www.python.org/)
+2. [PostgreSQL](https://www.postgresql.org/)
 
 ## Installation
 1. Fork repository
