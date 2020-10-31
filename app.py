@@ -14,7 +14,7 @@ if ENV == 'prod':
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 else:
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'localhost_database_info'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://sammaus@localhost/calculator'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
