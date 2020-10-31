@@ -57,7 +57,7 @@ def equations():
                 num1 = int(equation[0:i])
                 num2 = int(equation[i+1:])
                 answer = switchEquation(equation[i], num1, num2)
-                print(num1, num2, answer)
+                print(equation[i], num1, num2, answer)
         data = Calculator(equation, answer)
         db.session.add(data)
         db.session.commit()
@@ -78,5 +78,3 @@ def equations():
 if __name__ == '__main__':
     app.run()
 
-
-#query.(Model).filter(something).limit(5).all() dets.from_self().order_by(db.B.date_lts.desc()).limit(300).all()
