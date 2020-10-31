@@ -7,9 +7,14 @@ import os
 app = Flask(__name__)
 
 CORS(app)
+ENV='prod'
 
-app.debug = True
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+if ENV == 'prod':
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+else:
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'localhost_database_info'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
