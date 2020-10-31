@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import desc
+from flask_cors import CORS
 
 app = Flask(__name__, template_folder='./public')
+
+CORS(app)
 
 ENV = 'dev'
 
@@ -47,7 +51,7 @@ def index():
 def equations():
     # POST route to add equation to db
     if request.method == 'POST':
-        equation = request.form.get("equation")
+        equation = request.json.get("equation")
         for i in range(len(equation)):
             if(equation[i] == '+') or (equation[i] == '-') or (equation[i] == 'x') or (equation[i] == '÷'):
                 num1 = int(equation[0:i])
@@ -60,7 +64,7 @@ def equations():
         return "success", 201
     # GET route to get equations from db
     elif request.method == 'GET':
-        response = Calculator.query.all()
+        response = Calculator.query.order_by(Calculator.id.desc()).limit(10)
         output = []
         for item in response:
             currItem = {}
@@ -73,3 +77,6 @@ def equations():
 
 if __name__ == '__main__':
     app.run()
+
+
+#query.(Model).filter(something).limit(5).all() dets.from_self().order_by(db.B.date_lts.desc()).limit(300).all()
